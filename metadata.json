@@ -1,0 +1,8 @@
+{
+  "name": "Remix Sentinel Journal",
+  "description": "A private AI thinking space for journaling, reflection, brainstorming, and structured decision-making.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "entities": {
+    "Entry": {
+      "title": "Journal Entry",
+      "description": "A private reflection and conversation session between the user and Sentinel assistant",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "title": { "type": "string", "maxLength": 200 },
+        "messages": { "type": "array" },
+        "summary": { "type": "string", "maxLength": 1000 },
+        "tags": { "type": "array" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "userId", "title", "messages", "createdAt", "updatedAt"]
+    },
+    "DecisionCard": {
+      "title": "Decision Card",
+      "description": "A structured decision card generated from reflection and approved by the user",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "decision": { "type": "string", "maxLength": 500 },
+        "options": { "type": "array" },
+        "whatMatters": { "type": "array" },
+        "pros": { "type": "array" },
+        "cons": { "type": "array" },
+        "tradeOffs": { "type": "array" },
+        "risks": { "type": "array" },
+        "nextAction": { "type": "string", "maxLength": 500 },
+        "deadline": { "type": "string" },
+        "unresolvedQuestions": { "type": "array" },
+        "confidence": { "type": "string", "enum": ["Low", "Medium", "High"] },
+        "status": { "type": "string", "enum": ["Draft", "Approved", "Done"] },
+        "sourceEntryId": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "userId", "decision", "options", "whatMatters", "status", "createdAt", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}/entries/{entryId}": {
+      "schema": "Entry",
+      "description": "Private journal and reflection sessions belonging strictly to userId"
+    },
+    "/users/{userId}/decisions/{decisionId}": {
+      "schema": "DecisionCard",
+      "description": "Structured decision cards belonging strictly to userId"
+    }
+  }
+}
